@@ -8,7 +8,7 @@ import com.example.demo.entity.UsersInfo;
 
 public interface UserInfoRepo extends JpaRepository<UsersInfo, Integer> {
 
-	Optional<UsersInfo> findByName(String username);
+	Optional<UsersInfo> findByName(String name);
 
 	
 

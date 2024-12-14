@@ -24,10 +24,11 @@ import com.example.demo.services.UserInfoUserDetailService;
 //@EnableMethodSecurity  // for method level authrization
 public class SecurityConfig {
 
-	@Bean
-	PasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
+	  @Bean PasswordEncoder encoder() { 
+		  return new BCryptPasswordEncoder(); 
+		  }
+	 
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {

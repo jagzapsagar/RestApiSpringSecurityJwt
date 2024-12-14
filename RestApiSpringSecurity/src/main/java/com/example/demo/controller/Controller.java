@@ -5,8 +5,11 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,13 @@ public class Controller {
 	@Autowired
 	private UserInfoRepo userInfoRepo;
 	
+	@Autowired
+    private PasswordEncoder passwordEncoder; 
+	
+	//@Autowired
+    //private BCryptPasswordEncoder passwordEncoder;
+	 
+	
 	@PostMapping("/post")
 	public ResponseEntity<Object> save(@RequestBody UsersInfo usersInfo) {
 		// Check if the employee object has an ID
@@ -35,8 +45,10 @@ public class Controller {
 				errorResponse.put("error", "user with ID " + usersInfo.getId() + " already exists.");
 				return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
 			}
+			
 		}
-
+		String encodpass = passwordEncoder.encode(usersInfo.getPassword());
+		usersInfo.setPassword(encodpass);
 		// Save the employee (either with a provided or auto-generated ID)
 		UsersInfo savedEmployee = userInfoRepo.save(usersInfo);
 

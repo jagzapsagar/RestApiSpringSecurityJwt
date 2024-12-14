@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -27,6 +28,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	private JwtUtil jwtUtil;
 
 	@Autowired
+	//@Qualifier("userInfoUserDetailService") 
 	private UserDetailsService userDetailsService; // Inject UserDetailsService here
 
 	@Override

@@ -77,7 +77,9 @@ public class UserController {
 
 	}
 
+	
 	@GetMapping("/get/{id}")
+	//@PreAuthorize("hasAuthority('USER')")  //Alternative for RequestMather in config file Method level Authrization
 	public ResponseEntity<Employee> getById(@PathVariable Integer id) {
 
 		try {
